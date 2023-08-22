@@ -11,12 +11,14 @@ import java.util.ArrayList;
  * @author junior
  */
 public class Student implements StudentAcademicActions {
+    private String id;
     private String name;
     private String email;
     private String cpf;
-    private ArrayList<String> enrolled_subjects = new ArrayList();
+    private ArrayList<String> subjects = new ArrayList();
     
-    public Student(String name, String email, String cpf) {
+    public Student(String id, String name, String email, String cpf) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.cpf = cpf;
@@ -48,8 +50,12 @@ public class Student implements StudentAcademicActions {
         return this.cpf;
     }
     
+    protected String getId() {
+        return this.id;
+    }
+    
     private void checkIfStudentIsAlreadyEnrolledToSubject(String id) throws Exception {
-        if (!this.enrolled_subjects.isEmpty() && this.enrolled_subjects.contains(id))
+        if (!this.subjects.isEmpty() && this.subjects.contains(id))
             throw new Exception("Student is already enrolled to this Subject");
     }
 
@@ -57,13 +63,14 @@ public class Student implements StudentAcademicActions {
     public void enrollToSubject(Subject subject) {
         try {
             this.checkIfStudentIsAlreadyEnrolledToSubject(subject.getId());
+            this.subjects.add(subject.getId());
         } catch (Exception exception) {
-            
+            System.out.println("Error: " + exception.getMessage());
         }
     }
 
     @Override
     public ArrayList<String> getSubjects() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.subjects;
     }
 }

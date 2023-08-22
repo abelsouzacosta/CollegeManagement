@@ -10,6 +10,17 @@
 <project name="CollegeManagement" default="default" basedir=".">
     <description>Builds, tests, and runs the project CollegeManagement.</description>
     <import file="nbproject/build-impl.xml"/>
+    <target name="test" depends="compile">
+        <junit printsummary="yes">
+            <classpath>
+                <pathelement location="${build.classes.dir}"/>
+                <pathelement location="${javac.classpath}"/>
+            </classpath>
+            <batchtest todir="${reports.tests.dir}">
+                <fileset dir="${src.dir}" includes="**/*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 
