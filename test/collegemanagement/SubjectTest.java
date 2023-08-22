@@ -4,11 +4,7 @@
  */
 package collegemanagement;
 
-import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,12 +15,14 @@ import static org.junit.Assert.*;
 public class SubjectTest {
     
     private Subject instance;
+    private Student student;
     
     public SubjectTest() {}
     
     @Before
     public void setUp() {
         instance = new Subject("CS101", "Introduction to Computer Science", 120);
+        student = new Student("CS90007", "Abel Souza", "mail@email.com", "0000000000");
     }
     
     @Test
@@ -58,5 +56,32 @@ public class SubjectTest {
         int result = instance.getWorkLoad();
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void testSetWorkLoad() {
+        System.out.println("Testing method setWorkLoad(): should set a new work load");
+        int new_work_load = 90;
+        instance.setWorkLoad(new_work_load);
+        assertEquals(new_work_load, instance.getWorkLoad());
+    }
+    
+    @Test
+    public void testEnrollStudent() {
+        System.out.println("Testing method enrollStudent(): should enroll student");
+        instance.enrollStudent(student);
+        assertTrue(instance.getStudents().contains("CS90007"));
+    }
+    
+    @Test
+    public void testGetStudents() {
+        System.out.println("Testing method getStudents(): should return an ArrayList containing two elements");
+        Student another_student = new Student("CS3290", "Maria", "mail@mail.com", "90909090");
+        instance.enrollStudent(student);
+        instance.enrollStudent(another_student);
+        assertEquals(2, instance.getStudents().size());
+        assertTrue(instance.getStudents().contains("CS90007"));
+        assertTrue(instance.getStudents().contains("CS3290"));
+    }
+    
     
 }

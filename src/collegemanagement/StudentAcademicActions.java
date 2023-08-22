@@ -14,5 +14,4 @@ public interface StudentAcademicActions {
     public void enrollToSubject(Subject subject);
     
     public ArrayList<String> getSubjects();
-    
 }
