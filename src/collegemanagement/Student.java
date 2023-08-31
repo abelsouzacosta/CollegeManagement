@@ -4,7 +4,8 @@
  */
 package collegemanagement;
 
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
+
 
 /**
  *
@@ -21,6 +22,12 @@ public class Student {
         this.code = code;
         this.email = email;
         this.cpf = cpf;
+    }
+    
+    public static Student createStudent(String name, String email, String cpf) throws NoSuchAlgorithmException {
+        EmailValidator.isValid(email);
+        String code = HashGenerator.generateSHA256(cpf + email);
+        return new Student(name, code, email, cpf);
     }
     
     public String getName() {

@@ -4,8 +4,6 @@
  */
 package collegemanagement;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author junior
