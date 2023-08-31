@@ -1,0 +1,24 @@
+@startuml
+class Student {
+ -name
+ -code
+ -email
+ -cpf
+
+ getName()
+ getCode()
+ getEmail()
+ getCpf()
+}
+note right of Student::code
+	Code is a SHA-256 hashnumber
+end note
+class HashGenerator {
+ {static} generateSHA256()
+}
+class EmailValidator {
+ {static} isValid()
+}
+Student .. HashGenerator
+Student .. EmailValidator
+@enduml
